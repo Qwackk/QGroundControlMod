@@ -75,6 +75,7 @@ ApplicationWindow {
     function viewSwitch(isPlanView) {
         settingsWindow.visible  = false
         setupWindow.visible     = false
+        setupWindow2.visible    = false
         analyzeWindow.visible   = false
         flightView.visible      = false
         planViewLoader.visible  = false
@@ -103,6 +104,11 @@ ApplicationWindow {
     function showSetupView() {
         viewSwitch(false)
         setupWindow.visible = true
+    }
+
+    function showSetupView2() {
+        viewSwitch(false)
+        setupWindow2.visible = true
     }
 
     function showSettingsView() {
@@ -314,6 +320,15 @@ ApplicationWindow {
     }
 
     //-------------------------------------------------------------------------
+    //-- Setup UPDATE
+    Loader {
+        id:             setupWindow2
+        anchors.fill:   parent
+        visible:        false
+        source:         "test.qml"
+    }
+
+    //-------------------------------------------------------------------------
     //-- Analyze
     Loader {
         id:             analyzeWindow
@@ -330,6 +345,7 @@ ApplicationWindow {
         id: rootLoader
         anchors.centerIn: parent
     }
+
 
     //-------------------------------------------------------------------------
     //-- Vehicle Messages

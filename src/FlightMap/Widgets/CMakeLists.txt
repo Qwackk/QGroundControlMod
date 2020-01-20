@@ -19,4 +19,5 @@ SOURCES
     VibrationPageWidget.qml
     CompassRing.qml
     QGCCompassWidget.qml
+    Test_Widget.qml
 )

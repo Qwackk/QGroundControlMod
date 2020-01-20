@@ -121,6 +121,18 @@ Item {
                 }
             }
 
+            QGCToolBarButton {
+                id:                shaferButton
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                icon.source: "/qmlimages/Armed.svg"
+                visible: QGroundControl.corePlugin.showAdvancedUI
+                onClicked: {
+                    checked = true
+                    mainWindow.showSetupView2()
+                }
+            }
+
             Rectangle {
                 anchors.margins:    ScreenTools.defaultFontPixelHeight / 2
                 anchors.top:        parent.top

@@ -24,6 +24,7 @@ include(QGCCommon.pri)
 TARGET   = QGroundControl
 TEMPLATE = app
 QGCROOT  = $$PWD
+QT += network
 
 DebugBuild {
     DESTDIR  = $${OUT_PWD}/debug
@@ -263,7 +264,7 @@ QT += \
     svg \
     widgets \
     xml \
-    texttospeech
+    texttospeech \
 
 # Multimedia only used if QVC is enabled
 !contains (DEFINES, QGC_DISABLE_UVC) {
@@ -323,7 +324,7 @@ contains (DEFINES, QGC_DISABLE_PAIRING) {
 } else:exists(user_config.pri):infile(user_config.pri, DEFINES, QGC_DISABLE_PAIRING) {
     message("Skipping support for Pairing (manual override from user_config.pri)")
     DEFINES -= QGC_ENABLE_NFC
-} else:AndroidBuild:contains(QT_ARCH, arm64) {
+} else:AndroidBuild:contains(QT_ARCH, arm24) {
     # Haven't figured out how to get 64 bit arm OpenSLL yet which pairing requires
     message("Skipping support for Pairing (Missing Android OpenSSL 64 bit support)")
     DEFINES -= QGC_ENABLE_NFC
@@ -455,6 +456,8 @@ contains (DEFINES, QGC_ENABLE_PAIRING) {
 }
 
 SOURCES += \
+    src/FTP_Testing.cpp \
+    src/TestFTP.cpp \
     src/api/QGCCorePlugin.cc \
     src/api/QGCOptions.cc \
     src/api/QGCSettings.cc \
@@ -688,6 +691,8 @@ HEADERS += \
     src/AnalyzeView/GeoTagController.h \
     src/AnalyzeView/ExifParser.h \
     src/uas/FileManager.h \
+    src/qftp.h \
+    src/qurlinfo.h \
 
 contains (DEFINES, QGC_ENABLE_PAIRING) {
     HEADERS += \
@@ -911,6 +916,8 @@ SOURCES += \
     src/AnalyzeView/GeoTagController.cc \
     src/AnalyzeView/ExifParser.cc \
     src/uas/FileManager.cc \
+    src/qftp.cpp \
+    src/qurlinfo.cpp \
 
 contains (DEFINES, QGC_ENABLE_PAIRING) {
     SOURCES += \
